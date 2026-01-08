@@ -37,8 +37,8 @@ ENV/
 Thumbs.db
 
 # Project specific
-output/
 wget-log
+output/E_0x0821_2023_07_filtered.json
 
 # Large Data Files
 prediction/*.csv
@@ -46,3 +46,4 @@ prediction/data/
 *.zip
 
 *.csv
+!output/*.csv
