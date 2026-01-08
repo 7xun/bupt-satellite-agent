@@ -43,7 +43,6 @@ output/E_0x0821_2023_07_filtered.json
 # User specified ignores
 data/
 2023_07.csv
-oss_accesskey.csv
 
 # Large Data Files
 *.zip
