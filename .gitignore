@@ -41,7 +41,10 @@ wget-log
 output/E_0x0821_2023_07_filtered.json
 
 # User specified ignores
-data/
+data/E/
+data/ESA-Mission1/
+data/oss/
+data/preprocessed/
 2023_07.csv
 
 # Large Data Files
