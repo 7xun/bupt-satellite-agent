@@ -41,8 +41,8 @@ wget-log
 output/E_0x0821_2023_07_filtered.json
 
 # Large Data Files
-prediction/*.csv
-prediction/data/
+data/preprocessed/
+prediction/
 *.zip
 
 *.csv

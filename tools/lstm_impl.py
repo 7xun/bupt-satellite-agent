@@ -239,7 +239,16 @@ def run_lstm_detection_and_plot():
     
     # 修改路径：从 tools 目录向上两级找到根目录
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    data_dir = os.path.join(base_dir, "prediction", "data", "preprocessed", "multivariate", "ESA-Mission1-semi-supervised")
+    # data_dir = os.path.join(base_dir, "prediction", "data", "preprocessed", "multivariate", "ESA-Mission1-semi-supervised")
+    # 数据已移动到 data 目录下
+    data_dir = os.path.join(base_dir, "data", "ESA-Mission1-semi-supervised")
+    
+    # 注意：之前 robocopy 移动后的结构可能略有不同，需要根据实际移动结果调整
+    # robocopy prediction/data data /E /MOVE 
+    # 原路径: prediction/data/preprocessed/multivariate/ESA-Mission1-semi-supervised
+    # 现路径: data/preprocessed/multivariate/ESA-Mission1-semi-supervised
+    data_dir = os.path.join(base_dir, "data", "preprocessed", "multivariate", "ESA-Mission1-semi-supervised")
+
     train_file = os.path.join(data_dir, "3_months.train.csv")
     test_file = os.path.join(data_dir, "84_months.test.csv")
     
