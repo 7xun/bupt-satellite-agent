@@ -24,17 +24,17 @@
 
 ```mermaid
 graph TD
-    User[用户] --> Frontend[Streamlit 前端]
-    Frontend --> Agent[LangChain核心智能体]
-    Agent -->|决策| Router{工具路由}
-    Router -->|检索知识| KB[KB_Tool (FAISS)]
-    Router -->|查数据| OSS[OSS_Tool (Aliyun)]
-    Router -->|测异常| LSTM[LSTM_Tool (PyTorch)]
+    User[用户] --> Frontend["Streamlit 前端"]
+    Frontend --> Agent["LangChain核心智能体"]
+    Agent -->|决策| Router{"工具路由"}
+    Router -->|检索知识| KB["KB_Tool (FAISS)"]
+    Router -->|查数据| OSS["OSS_Tool (Aliyun)"]
+    Router -->|测异常| LSTM["LSTM_Tool (PyTorch)"]
     Router -->|看报告| Report[Report_Tool]
-    KB --> LLM[大模型 (Qwen)]
-    OSS --> Output[JSON/CSV结果]
-    LSTM --> Plot[可视化图表]
-    LLM --> Answer[最终回复]
+    KB --> LLM["大模型 (Qwen)"]
+    OSS --> Output["JSON/CSV结果"]
+    LSTM --> Plot["可视化图表"]
+    LLM --> Answer["最终回复"]
 ```
 
 ---
