@@ -35,7 +35,7 @@ BUCKET_NAME = 'hede-satellite'
 DATA_ID = '0x0821'
 
 # 本地文件夹路径: oss/processed_data/0x0821
-LOCAL_DIR = os.path.join(os.path.dirname(__file__), 'processed_data', DATA_ID)
+LOCAL_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "oss", "processed_data", DATA_ID)
 
 # OSS 目标文件夹路径: E/0x0821
 OSS_PREFIX = f'E/{DATA_ID}'

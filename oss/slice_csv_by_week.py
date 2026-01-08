@@ -12,7 +12,7 @@ import os
 INPUT_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), '0x0821.csv')
 
 # 输出目录 (在 oss 文件夹下)
-OUTPUT_DIR = os.path.join(os.path.dirname(__file__), 'processed_data', '0x0821')
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "oss", "processed_data", "0x0821")
 
 def slice_csv_by_week():
     # 1. 检查输入文件

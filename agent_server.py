@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 """
-LangServe 服务器启动脚本
+LangServe 服务端入口。
 """
 import uvicorn
 from fastapi import FastAPI
@@ -22,5 +21,5 @@ add_routes(
 )
 
 if __name__ == "__main__":
-    print("启动 LangServe: http://localhost:8000")
+    print("正在启动 LangServe: http://localhost:8000")
     uvicorn.run(app, host="0.0.0.0", port=8000)

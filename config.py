@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 """
-全局配置模块
+项目的全局配置模块。
 """
 import os
 
+# --- 模型配置 ---
 DASHSCOPE_API_KEY = "sk-af0bd19b890d465ea71ca754cf2a6658"
 DASHSCOPE_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 
@@ -11,15 +11,15 @@ QWEN_MODEL = "qwen-plus"
 EMBEDDING_MODEL = "text-embedding-v3"
 EMBEDDING_DIMENSIONS = None
 
-# 路径
+# --- 项目路径 ---
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 VECTOR_STORE_DIR = os.path.join(PROJECT_ROOT, "index")
-DATA_KB_DIR = os.path.join(PROJECT_ROOT, "data_kb")
-ANNUAL_REPORT_PATH = os.path.join(PROJECT_ROOT, "frontend", "satellite.html")
+DATA_KB_DIR = os.path.join(PROJECT_ROOT, "data", "kb")
 PARQUET_ROOT = os.path.join(PROJECT_ROOT, "data")
 OUTPUT_ROOT = os.path.join(PROJECT_ROOT, "output")
+ANNUAL_REPORT_PATH = os.path.join(PROJECT_ROOT, "frontend", "satellite.html")
 
-# 卫星数据映射
+# --- 卫星数据映射 ---
 BAG_LABEL = [
     '0x0824', '0x0822', '0x0823', '0x0826', '0x0A73', '0x0981', '0x0A6E', '0x0A6F',
     '0x0980', '0x0821', '0x08A3', '0x3030', '0x08A4', '0x09F5', '0x090E', '0x0A6D',
@@ -31,7 +31,7 @@ BAG_NAME = [
     '姿控部组件包', '备测控数传快包', '姿控快包', '备测控数传慢包'
 ]
 
-# OSS 配置
+# --- OSS 配置 ---
 OSS_ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID', 'YOUR_ACCESS_KEY_ID')
 OSS_ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET', 'YOUR_ACCESS_KEY_SECRET')
 OSS_ENDPOINT = 'oss-cn-beijing.aliyuncs.com'

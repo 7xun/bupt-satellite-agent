@@ -22,7 +22,7 @@ START_TIME = 1728748800664000000
 # 纳秒时间戳 (对应 2024-10-13 00:00:10.664)
 END_TIME = 1728748838664000000
 # 输出文件路径：保存到当前脚本所在目录下的 data 文件夹中
-OUTPUT_FILE = os.path.join(os.path.dirname(__file__), "data", "solar_current_data.json")
+OUTPUT_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "oss", "data", "solar_current_data.json")
 
 def query_oss_csv():
     # 1. 构建 OSS 完整路径 (s3://bucket/key)

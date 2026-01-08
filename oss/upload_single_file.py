@@ -103,7 +103,7 @@ def upload_single_file(local_path):
 if __name__ == '__main__':
     # 默认示例文件 (方便直接运行测试)
     # 假设当前脚本在 oss/ 目录下，向上找 processed_data
-    default_file = os.path.join(os.path.dirname(__file__), 'processed_data', '0x0821', '2023_07.csv')
+    default_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "oss", "processed_data", "0x0821", "2023_07.csv")
     
     parser = argparse.ArgumentParser(description='上传单个文件到 OSS')
     parser.add_argument('file_path', nargs='?', default=default_file, help='要上传的本地文件路径')

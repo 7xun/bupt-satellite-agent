@@ -10,21 +10,25 @@
 - **`config.py`**: 全局配置文件。包含 API Key、OSS 配置、文件路径定义以及卫星包名映射。
 
 ### 工具集 (`tools/`)
-- **`kb_tool.py`**: 知识库检索工具。基于 FAISS 向量数据库检索 `data_kb/` 中的故障文档。
+- **`kb_tool.py`**: 知识库检索工具。基于 FAISS 向量数据库检索 `data/kb/` 中的故障文档。
 - **`oss_tool.py`**: OSS 数据查询工具。通过自然语言生成 SQL 查询 Aliyun OSS 上的 CSV 数据。
 - **`lstm_tool.py`**: 异常检测工具。调用 LSTM 模型对时序数据进行异常检测。
+- **`lstm_impl.py`**: LSTM 模型实现与绘图逻辑。
 - **`report_tool.py`**: 报告获取工具。用于检索和展示卫星年度报告。
 - **`utils.py`**: 通用辅助函数（如 LLM 构建、包名转换等）。
 
 ### 数据处理与存储 (`oss/` & `data/`)
-- **`oss/`**: 包含与阿里云 OSS 交互的脚本。
+- **`oss/`**: 包含与阿里云 OSS 交互及数据预处理脚本。
     - `upload_to_oss.py`: 将本地数据上传至 OSS。
     - `query_oss_data.py`: OSS 数据查询逻辑实现。
     - `slice_csv_by_week.py`: 数据预处理脚本，将大文件按周切分。
     - `analyze_abnormal_data.py`: 异常数据分析脚本。
-- **`data_kb/`**: 故障知识库文档（Markdown 格式）。
+- **`data/`**:
+    - **`kb/`**: 故障知识库。包含原始文档（docx）、转换脚本 `convert_docs.py` 及转换后的 markdown (`kb_md/`)。
+    - **`oss/`**: 存放 OSS 相关的原始或处理后数据。
+    - **`E/`, `ESA-Mission1/` 等**: 本地缓存的卫星遥测数据。
 - **`index/`**: FAISS 向量索引文件，用于 RAG（检索增强生成）。
-- **`frontend/`**: 存放生成的 HTML 报告及静态资源。
+- **`frontend/`**: 存放生成的 HTML 报告及静态资源。包含 `fix_html.py` 用于修复资源路径。
 
 ### 异常检测 (`prediction/`)
 - 包含基于 TimeEval 框架的时间序列异常检测实验代码。
@@ -84,7 +88,7 @@ python -m streamlit run app.py
 
 1.  **故障查询 (RAG)**
     *   **指令**: `我正在进行卫星故障排查。请检索知识库，告诉我 GNSS 故障诊断的一般步骤或常见现象有哪些？`
-    *   **预期**: Agent 应检索 `data_kb` 中的文档，并总结 GNSS 故障的相关信息。
+    *   **预期**: Agent 应检索 `data/kb` 中的文档，并总结 GNSS 故障的相关信息。
 
 2.  **数据查询 (Text-to-SQL / OSS)**
     *   **指令**: `帮我查询E卫星0x0821包中，2023年第7周的数据中‘ZTMS015-帆板1状态’字段值为‘未展开’的所有数据。`
@@ -106,5 +110,8 @@ python -m streamlit run app.py
 
 ## 🛠️ 维护与扩展
 
-- **添加新知识**: 将 Markdown 格式的故障文档放入 `data_kb/`，运行 `index/build_index.py` (需自行实现或确认构建逻辑) 重建索引。
+- **添加新知识**: 
+    1. 将 Word 文档 (.docx) 放入 `data/kb/` 目录。
+    2. 运行 `python data/kb/convert_docs.py` 将文档转换为 Markdown。
+    3. 运行 `python index/build_index.py` 重建向量索引。
 - **添加新工具**: 在 `tools/` 下创建新脚本，使用 `@tool` 装饰器定义工具，并在 `agent.py` 的 `tools` 列表中注册。
