@@ -1,16 +1,12 @@
 """
 智能体核心智能模块。
 """
-from __future__ import annotations
-
 from typing import Dict
-
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_classic.agents import create_tool_calling_agent, AgentExecutor
-
-from config import QWEN_MODEL
+from config import QWEN_MODEL, SYSTEM_PROMPT
 from tools.utils import build_llm
 from tools import (
     get_satellite_status_report,
@@ -21,7 +17,6 @@ from tools import (
 )
 
 _STORE: Dict[str, ChatMessageHistory] = {}
-
 
 def build_agent(verbose=False, model_name=QWEN_MODEL):
     """
@@ -36,19 +31,8 @@ def build_agent(verbose=False, model_name=QWEN_MODEL):
         query_oss_csv_data
     ]
     
-    system_prompt = (
-        "你是一个卫星故障诊断助手。规则：\n"
-        "1. 问“状态/报告” -> get_satellite_status_report (直接返回路径)\n"
-        "2. 问“知识/文档” -> kb_search (引用来源)\n"
-        "3. 问“LSTM/异常检测” -> run_lstm_ad\n"
-        "4. 问“分析结果/异常点” -> analyze_lstm_results\n"
-        "5. 问“OSS数据/CSV查询” -> query_oss_csv_data\n"
-        "   示例: 查询E卫星0x0821包2023年第7周ZTMS015-帆板1状态为未展开的数据\n"
-        "6. 展示图片/JSON -> 直接在回答中包含文件路径\n"
-    )
-
     prompt = ChatPromptTemplate.from_messages([
-        ("system", system_prompt),
+        ("system", SYSTEM_PROMPT),
         MessagesPlaceholder("chat_history"),
         ("human", "{input}"),
         MessagesPlaceholder("agent_scratchpad"),

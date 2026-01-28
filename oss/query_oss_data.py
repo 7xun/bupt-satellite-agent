@@ -10,8 +10,8 @@ import pandas as pd
 # =============================================================================
 # 配置信息 (请与上传脚本保持一致)
 # =============================================================================
-ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID', 'YOUR_ACCESS_KEY_ID')
-ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET', 'YOUR_ACCESS_KEY_SECRET')
+ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID')
+ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET')
 ENDPOINT = 'oss-cn-beijing.aliyuncs.com'
 BUCKET_NAME = 'hede-satellite'
 OSS_OBJECT_KEY = 'data/0x0821_.csv' # OSS 上的文件路径

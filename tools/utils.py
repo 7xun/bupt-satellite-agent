@@ -3,13 +3,15 @@
 """
 import os
 from typing import List
-
+import re
 import duckdb
 import pandas as pd
 from openai import OpenAI
 from langchain_openai import ChatOpenAI
 from langchain_core.embeddings import Embeddings
 from langchain_community.vectorstores import FAISS
+from datetime import datetime, timedelta
+from config import PROJECT_ROOT
 
 from config import (
     DASHSCOPE_API_KEY, DASHSCOPE_BASE_URL, EMBEDDING_MODEL,
@@ -122,3 +124,16 @@ def _get_retriever():
         )
         _RETRIEVER = vs.as_retriever(search_kwargs={"k": 4})
     return _RETRIEVER
+
+
+def log(info:str):
+    """
+    直接输入日志信息，不必输入结尾换行符
+    """
+    # 用于调试，请勿删除
+    # 直接添加/删除下方 return 的注释即可
+    return
+    p = os.path.join(PROJECT_ROOT,'log.txt')
+    with open(p,'a',encoding='utf-8')as f:
+        f.write(f"{datetime.now().strftime('%m/%d %H:%M:%S')}\n{info}\n\n")
+
