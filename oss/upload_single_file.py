@@ -19,8 +19,8 @@ except ImportError:
 # 1. 配置信息
 # =============================================================================
 
-ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID', 'YOUR_ACCESS_KEY_ID')
-ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET', 'YOUR_ACCESS_KEY_SECRET')
+ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID')
+ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET')
 ENDPOINT = 'oss-cn-beijing.aliyuncs.com'
 BUCKET_NAME = 'hede-satellite'
 

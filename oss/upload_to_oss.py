@@ -20,8 +20,9 @@ except ImportError:
 
 # [必填] 阿里云账号 AccessKey
 # 建议使用 RAM 用户 AccessKey，获取方式：https://ram.console.aliyun.com/users
-ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID', 'YOUR_ACCESS_KEY_ID')
-ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET', 'YOUR_ACCESS_KEY_SECRET')
+# 在 config.py 中修改，或者在 shell 中直接输入
+ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID')
+ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET')
 
 # [必填] Bucket 所在地域的 Endpoint
 # 例如北京是: oss-cn-beijing.aliyuncs.com

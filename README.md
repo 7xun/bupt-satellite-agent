@@ -53,13 +53,26 @@ agent/
 │   └── E/                  # [缓存] 本地缓存的卫星数据包
 ├── index/                  # [索引] FAISS 向量数据库文件
 ├── tools/                  # [工具箱]
+│   ├── html_to_hyperlink.py# 生成可点击的报告链接
 │   ├── kb_tool.py          # 知识库检索工具
-│   ├── oss_tool.py         # OSS 数据操作工具
 │   ├── lstm_tool.py        # 异常检测工具封装
 │   ├── lstm_impl.py        # LSTM 模型具体实现
-│   └── report_tool.py      # 报告查询工具
+│   ├── oss_tool.py         # OSS 数据操作工具
+│   ├── report_tool.py      # 生成报告的入口
+│   └── time_translate.py   # 时间转换工具
 ├── oss/                    # [OSS脚本] 上传/下载/数据切分独立脚本
-└── frontend/               # [静态资源] HTML 报告和前端图片
+│   ├── info/               # 一些用于预处理查询的数据
+│   ├── update_to_js.py     # 查询数据，保存至 js 文件
+│   └── ......
+└── frontend/               # 网页相关
+│   ├── components/         # ui组件
+│   │   ├── mainpage.py     # 主页
+│   │   └── page_config.py  # 主页的一些配置
+│   ├── images/             # 图片资源
+│   ├── js/                 # 报告页面需要的资源
+│   ├── services/
+│   │   └── chat.py         # 对话逻辑
+│   └── report.html         # 报告页面
 ```
 
 ---
@@ -98,8 +111,9 @@ pip install streamlit langchain langchain-community langchain-openai pandas oss2
 # --- 模型配置 ---
 DASHSCOPE_API_KEY = "sk-xxxxxxxxxxxxxxxx"  # 你的阿里云百炼 API Key
 
-# --- OSS 配置 (config.py 中可能直接读取环境变量) ---
-# 如果 config.py 中没有定义，请确保环境变量已设置
+# --- OSS 配置 ---
+OSS_ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID','xxxxxxxxxxx')
+OSS_ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET','xxxxxxxxxx')
 ```
 
 **方式 B: 环境变量 (推荐，安全)**
